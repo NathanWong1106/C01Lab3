@@ -57,6 +57,19 @@ function App() {
 
   const deleteAllNotes = () => {
     // Code for DELETE all notes here
+    try {
+      fetch("http://localhost:4000/deleteAllNotes", { method: "DELETE" })
+      .then((res) => {
+        if(!res.ok) {
+          console.log("Delete all failed: ", res.status)
+        } else {
+          deleteAllNotesState()
+        }
+      })
+    } catch(error) {
+       console.log("Delete All Notes function failed: ", error)
+       alert("Failed to delete all notes.")
+    }
   }
 
   
@@ -91,6 +104,7 @@ function App() {
   }
 
   const deleteAllNotesState = () => {
+    setNotes([])
     // Code for modifying state after DELETE all here
   }
 
